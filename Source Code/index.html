@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wix-Style Website Builder — Clone Demo</title>
+  <meta name="description" content="A single-page Wix-style website builder landing page clone demo built with Tailwind CSS and JavaScript." />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="styles.css"></link>
+</head>
+<body class="min-h-screen text-slate-900 antialiased">
+  <!-- Top background -->
+  <div class="fixed inset-0 -z-50 gradient-hero"></div>
+
+  <!-- Sticky Nav -->
+  <header class="sticky top-0 z-40">
+    <div class="relative">
+      <div class="absolute inset-0 bg-white/50 backdrop-blur supports-[backdrop-filter]:bg-white/40 border-b border-slate-200"></div>
+      <nav class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
+        <div class="flex items-center justify-between gap-3">
+          <a href="#top" class="flex items-center gap-2 font-semibold tracking-tight">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl btn-primary text-white shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" class="h-5 w-5">
+                <path d="M6 17V7l6 10 6-10v10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="text-lg">Wix<span class="text-slate-500">ish</span></span>
+          </a>
+
+          <div class="hidden lg:flex items-center gap-6 text-sm">
+            <a class="text-slate-700 hover:text-slate-950" href="#templates">Templates</a>
+            <a class="text-slate-700 hover:text-slate-950" href="#features">Features</a>
+            <a class="text-slate-700 hover:text-slate-950" href="#builder">Builder</a>
+            <a class="text-slate-700 hover:text-slate-950" href="#pricing">Pricing</a>
+            <a class="text-slate-700 hover:text-slate-950" href="#faq">FAQ</a>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button id="btnTheme" class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-slate-700 hover:text-slate-950 hover:bg-slate-100 focus-ring" aria-label="Toggle theme">
+              <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"><path d="M12 18a6 6 0 1 0 0-12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="hidden md:inline">Theme</span>
+            </button>
+            <button id="btnLogin" class="hidden sm:inline-flex items-center px-3 py-2 rounded-xl text-sm text-slate-700 hover:text-slate-950 hover:bg-slate-100 focus-ring">Log In</button>
+            <button id="btnGetStarted" class="inline-flex items-center px-4 py-2 rounded-xl text-sm font-semibold text-white btn-primary shadow-sm focus-ring">Get Started</button>
+            <button id="btnMenu" class="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-xl hover:bg-slate-100 focus-ring" aria-label="Open menu" aria-expanded="false">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div id="drawerOverlay" class="hidden fixed inset-0 z-50">
+      <div class="absolute inset-0 bg-slate-950/30" data-close="true"></div>
+      <aside class="absolute right-0 top-0 h-full w-[86%] max-w-sm bg-white shadow-2xl border-l border-slate-200">
+        <div class="p-4 flex items-center justify-between">
+          <div class="flex items-center gap-2 font-semibold">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl btn-primary text-white shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" class="h-5 w-5">
+                <path d="M6 17V7l6 10 6-10v10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Wixish</span>
+          </div>
+          <button class="h-10 w-10 rounded-xl hover:bg-slate-100 focus-ring" data-close="true" aria-label="Close menu">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <div class="px-4 pb-6">
+          <div class="grid gap-2 text-sm">
+            <a class="px-3 py-2 rounded-xl hover:bg-slate-100" href="#templates" data-close="true">Templates</a>
+            <a class="px-3 py-2 rounded-xl hover:bg-slate-100" href="#features" data-close="true">Features</a>
+            <a class="px-3 py-2 rounded-xl hover:bg-slate-100" href="#builder" data-close="true">Builder</a>
+            <a class="px-3 py-2 rounded-xl hover:bg-slate-100" href="#pricing" data-close="true">Pricing</a>
+            <a class="px-3 py-2 rounded-xl hover:bg-slate-100" href="#faq" data-close="true">FAQ</a>
+          </div>
+          <div class="mt-4 grid gap-2">
+            <button class="w-full px-4 py-2 rounded-xl text-sm font-semibold text-white btn-primary shadow-sm focus-ring" id="btnGetStartedMobile">Get Started</button>
+            <button class="w-full px-4 py-2 rounded-xl text-sm text-slate-700 hover:bg-slate-100 focus-ring" id="btnLoginMobile">Log In</button>
+          </div>
+          <p class="mt-4 text-xs text-slate-500">Demo clone UI. Not affiliated with Wix.</p>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main id="top" class="relative">
+    <!-- Hero -->
+    <section class="relative">
+      <div class="absolute inset-0 -z-10 bg-grid opacity-[.55]"></div>
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-14 pb-10 sm:pt-16 sm:pb-14">
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/70 ring-1 ring-slate-200 text-xs text-slate-700">
+              <span class="inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+              <span>Build a website that looks like it took a whole team</span>
+              <span class="text-slate-400">•</span>
+              <a href="#templates" class="font-semibold text-indigo-600 hover:text-indigo-700">Browse templates</a>
+            </div>
+            <h1 class="mt-5 text-4xl sm:text-5xl font-semibold tracking-tight text-slate-950">
+              Create a website you’re proud of —
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600">without the complexity</span>.
+            </h1>
+            <p class="mt-4 text-lg text-slate-600 max-w-xl">
+              A Wix-style landing page clone demo: pick a template, customize with a drag-and-drop-ish builder, and launch with built‑in marketing tools.
+            </p>
+            <div class="mt-6 flex flex-col sm:flex-row gap-3">
+              <button class="inline-flex items-center justify-center px-5 py-3 rounded-xl text-sm font-semibold text-white btn-primary shadow-soft focus-ring" id="ctaStart">
+                Start building for free
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <a href="#builder" class="inline-flex items-center justify-center px-5 py-3 rounded-xl text-sm font-semibold text-slate-900 bg-white/80 ring-1 ring-slate-200 hover:bg-white focus-ring">
+                See the builder
+              </a>
+            </div>
+            <div class="mt-7 flex flex-wrap gap-6 text-sm text-slate-600">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex h-9 w-9 rounded-xl bg-white/80 ring-1 ring-slate-200 items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>900+ layouts (demo)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="inline-flex h-9 w-9 rounded-xl bg-white/80 ring-1 ring-slate-200 items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-600" viewBox="0 0 24 24" fill="none"><path d="M12 2l4 7 8 1-6 5 2 8-8-4-8 4 2-8-6-5 8-1 4-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                </span>
+                <span>AI copy helpers</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="inline-flex h-9 w-9 rounded-xl bg-white/80 ring-1 ring-slate-200 items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-fuchsia-600" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h10M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </span>
+                <span>SEO + analytics</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6">
+            <div class="relative rounded-3xl ring-1 ring-slate-200 bg-white/60 shadow-soft overflow-hidden noise">
+              <div class="p-4 sm:p-6">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="h-3 w-3 rounded-full bg-rose-400"></span>
+                    <span class="h-3 w-3 rounded-full bg-amber-400"></span>
+                    <span class="h-3 w-3 rounded-full bg-emerald-400"></span>
+                  </div>
+                  <div class="text-xs text-slate-500">Preview</div>
+                </div>
+
+                <!-- Mock builder preview -->
+                <div class="mt-4 grid grid-cols-12 gap-4">
+                  <div class="col-span-4 rounded-2xl bg-white/80 ring-1 ring-slate-200 p-3">
+                    <div class="flex items-center justify-between">
+                      <p class="text-xs font-semibold text-slate-800">Pages</p>
+                      <span class="text-[10px] text-slate-500">Draft</span>
+                    </div>
+                    <div class="mt-3 grid gap-2">
+                      <div class="rounded-xl bg-indigo-50 ring-1 ring-indigo-100 px-3 py-2 text-xs font-semibold text-indigo-700">Home</div>
+                      <div class="rounded-xl bg-slate-50 ring-1 ring-slate-200 px-3 py-2 text-xs text-slate-700">Services</div>
+                      <div class="rounded-xl bg-slate-50 ring-1 ring-slate-200 px-3 py-2 text-xs text-slate-700">Portfolio</div>
+                      <div class="rounded-xl bg-slate-50 ring-1 ring-slate-200 px-3 py-2 text-xs text-slate-700">Contact</div>
+                    </div>
+                    <div class="mt-3 rounded-2xl bg-gradient-to-br from-indigo-600 to-fuchsia-600 p-3 text-white">
+                      <p class="text-xs opacity-90">Publish in 1 click</p>
+                      <p class="mt-1 text-sm font-semibold">Go live</p>
+                    </div>
+                  </div>
+                  <div class="col-span-8 rounded-2xl bg-white ring-1 ring-slate-200 overflow-hidden">
+                    <div class="p-4 border-b border-slate-200 flex items-center justify-between">
+                      <div class="flex items-center gap-2">
+                        <span class="h-8 w-8 rounded-xl bg-indigo-600"></span>
+                        <div>
+                          <p class="text-xs font-semibold">Studio Nova</p>
+                          <p class="text-[10px] text-slate-500">creative agency</p>
+                        </div>
+                      </div>
+                      <div class="flex gap-2">
+                        <span class="h-8 w-20 rounded-xl bg-slate-100"></span>
+                        <span class="h-8 w-24 rounded-xl bg-indigo-600"></span>
+                      </div>
+                    </div>
+                    <div class="p-4">
+                      <div class="grid gap-3">
+                        <div class="rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 text-white p-5">
+                          <p class="text-xs opacity-80">New collection</p>
+                          <p class="mt-1 text-xl font-semibold">Design that converts.</p>
+                          <div class="mt-4 flex gap-2">
+                            <span class="h-9 w-24 rounded-xl bg-white/15"></span>
+                            <span class="h-9 w-28 rounded-xl bg-white"></span>
+                          </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3">
+                          <div class="rounded-2xl bg-slate-50 ring-1 ring-slate-200 p-4">
+                            <div class="h-10 w-10 rounded-xl bg-indigo-100"></div>
+                            <div class="mt-3 h-3 w-24 rounded bg-slate-200"></div>
+                            <div class="mt-2 h-3 w-16 rounded bg-slate-200"></div>
+                          </div>
+                          <div class="rounded-2xl bg-slate-50 ring-1 ring-slate-200 p-4">
+                            <div class="h-10 w-10 rounded-xl bg-emerald-100"></div>
+                            <div class="mt-3 h-3 w-24 rounded bg-slate-200"></div>
+                            <div class="mt-2 h-3 w-16 rounded bg-slate-200"></div>
+                          </div>
+                          <div class="rounded-2xl bg-slate-50 ring-1 ring-slate-200 p-4">
+                            <div class="h-10 w-10 rounded-xl bg-fuchsia-100"></div>
+                            <div class="mt-3 h-3 w-24 rounded bg-slate-200"></div>
+                            <div class="mt-2 h-3 w-16 rounded bg-slate-200"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-4 flex items-center justify-between text-xs text-slate-600">
+                  <div class="flex items-center gap-2">
+                    <span class="inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                    <span>Autosave on</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="px-2 py-1 rounded-lg bg-slate-100 ring-1 ring-slate-200">⌘K</span>
+                    <span class="text-slate-500">Quick actions</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="mt-3 text-xs text-slate-500">Tip: Explore Templates, then preview one in the modal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Templates -->
+    <section id="templates" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Choose a template. Make it yours.</h2>
+          <p class="mt-2 text-slate-600 max-w-2xl">Filter by category, search by keyword, and preview instantly. (All templates are demo content.)</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
+          <div class="relative">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" stroke="currentColor" stroke-width="2"/></svg>
+            <input id="templateSearch" class="w-full sm:w-72 pl-9 pr-3 py-2.5 rounded-xl bg-white/80 ring-1 ring-slate-200 focus-ring" placeholder="Search templates (e.g., cafe, portfolio)" />
+          </div>
+          <div class="flex gap-2 overflow-auto sm:overflow-visible">
+            <button class="tplFilter px-3 py-2 rounded-xl text-sm bg-slate-900 text-white" data-category="all">All</button>
+            <button class="tplFilter px-3 py-2 rounded-xl text-sm bg-white/80 ring-1 ring-slate-200 hover:bg-white" data-category="business">Business</button>
+            <button class="tplFilter px-3 py-2 rounded-xl text-sm bg-white/80 ring-1 ring-slate-200 hover:bg-white" data-category="portfolio">Portfolio</button>
+            <button class="tplFilter px-3 py-2 rounded-xl text-sm bg-white/80 ring-1 ring-slate-200 hover:bg-white" data-category="store">Store</button>
+            <button class="tplFilter px-3 py-2 rounded-xl text-sm bg-white/80 ring-1 ring-slate-200 hover:bg-white" data-category="events">Events</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="templateGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+
+      <div class="mt-8 flex items-center justify-between text-sm text-slate-600">
+        <p><span id="templateCount" class="font-semibold text-slate-900">0</span> templates shown</p>
+        <button id="btnShuffle" class="px-3 py-2 rounded-xl bg-white/80 ring-1 ring-slate-200 hover:bg-white focus-ring">Shuffle</button>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div class="rounded-3xl bg-white/65 ring-1 ring-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-10">
+          <div class="flex items-start justify-between gap-6 flex-col lg:flex-row">
+            <div>
+              <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Built-in tools to grow your business</h2>
+              <p class="mt-2 text-slate-600 max-w-2xl">Payments, SEO, email, scheduling and analytics—designed to work together so your site can do more than look good.</p>
+            </div>
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 text-white text-xs">
+              <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+              <span>All-in-one platform</span>
+            </div>
+          </div>
+
+          <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="rounded-2xl bg-white ring-1 ring-slate-200 p-5">
+              <div class="h-11 w-11 rounded-2xl bg-indigo-50 ring-1 ring-indigo-100 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" viewBox="0 0 24 24" fill="none"><path d="M4 7h16v10H4V7z" stroke="currentColor" stroke-width="2"/><path d="M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <p class="mt-3 font-semibold">Drag-and-drop sections</p>
+              <p class="mt-1 text-sm text-slate-600">Add hero blocks, galleries, pricing and more with pixel-level control.</p>
+            </div>
+            <div class="rounded-2xl bg-white ring-1 ring-slate-200 p-5">
+              <div class="h-11 w-11 rounded-2xl bg-emerald-50 ring-1 ring-emerald-100 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-700" viewBox="0 0 24 24" fill="none"><path d="M20 7l-8 10L4 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <p class="mt-3 font-semibold">Bookings & payments</p>
+              <p class="mt-1 text-sm text-slate-600">Take appointments, accept cards, send invoices and follow up automatically.</p>
+            </div>
+            <div class="rounded-2xl bg-white ring-1 ring-slate-200 p-5">
+              <div class="h-11 w-11 rounded-2xl bg-fuchsia-50 ring-1 ring-fuchsia-100 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-fuchsia-700" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4V4z" stroke="currentColor" stroke-width="2"/><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <p class="mt-3 font-semibold">SEO & marketing</p>
+              <p class="mt-1 text-sm text-slate-600">Guided checklists, social posts, emails and analytics dashboards.</p>
+            </div>
+            <div class="rounded-2xl bg-white ring-1 ring-slate-200 p-5">
+              <div class="h-11 w-11 rounded-2xl bg-amber-50 ring-1 ring-amber-100 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-700" viewBox="0 0 24 24" fill="none"><path d="M12 2v20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M7 7h10M7 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <p class="mt-3 font-semibold">Mobile optimization</p>
+              <p class="mt-1 text-sm text-slate-600">Preview on devices and adjust spacing, typography and sections.</p>
+            </div>
+            <div class="rounded-2xl bg-white ring-1 ring-slate-200 p-5">
+              <div class="h-11 w-11 rounded-2xl bg-sky-50 ring-1 ring-sky-100 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sky-700" viewBox="0 0 24 24" fill="none"><path d="M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 4v16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <p class="mt-3 font-semibold">App marketplace</p>
+              <p class="mt-1 text-sm text-slate-600">Add chat, forms, CRM and automations in a click (simulated here).</p>
+            </div>
+            <div class="rounded-2xl bg-white ring-1 ring-slate-200 p-5">
+              <div class="h-11 w-11 rounded-2xl bg-slate-50 ring-1 ring-slate-200 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" viewBox="0 0 24 24" fill="none"><path d="M8 7h8M8 12h8M8 17h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6 4h12v16H6V4z" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <p class="mt-3 font-semibold">One dashboard</p>
+              <p class="mt-1 text-sm text-slate-600">Manage site, orders and leads from one place with realtime stats.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Builder playground -->
+    <section id="builder" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div class="flex items-end justify-between gap-6 flex-col lg:flex-row">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Try a mini builder</h2>
+          <p class="mt-2 text-slate-600 max-w-2xl">Add sections and reorder them. This is a lightweight interaction demo—no backend required.</p>
+        </div>
+        <div class="flex gap-2">
+          <button id="btnResetBuilder" class="px-3 py-2 rounded-xl bg-white/80 ring-1 ring-slate-200 hover:bg-white focus-ring text-sm">Reset</button>
+          <button id="btnPublish" class="px-4 py-2 rounded-xl text-sm font-semibold text-white btn-primary shadow-sm focus-ring">Publish</button>
+        </div>
+      </div>
+
+      <div class="mt-8 grid lg:grid-cols-12 gap-5">
+        <div class="lg:col-span-4">
+          <div class="rounded-3xl bg-white/70 ring-1 ring-slate-200 shadow-soft p-5">
+            <div class="flex items-center justify-between">
+              <p class="font-semibold">Add a section</p>
+              <span class="text-xs text-slate-500">Click to insert</span>
+            </div>
+            <div class="mt-4 grid gap-2" id="blockPalette">
+              <!-- populated by JS -->
+            </div>
+            <div class="mt-4 rounded-2xl bg-slate-900 text-white p-4">
+              <p class="text-sm font-semibold">Pro tip</p>
+              <p class="mt-1 text-xs text-white/80">Use the arrows on a section to reorder it.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-8">
+          <div class="rounded-3xl bg-white ring-1 ring-slate-200 shadow-soft overflow-hidden">
+            <div class="p-4 border-b border-slate-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                <p class="text-sm font-semibold">Page: Home</p>
+                <p class="text-xs text-slate-500">(Demo layout)</p>
+              </div>
+              <div class="text-xs text-slate-500" id="builderStatus">Saved</div>
+            </div>
+
+            <div class="p-4 sm:p-6 bg-slate-50" id="canvas">
+              <!-- sections go here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div class="flex items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Loved by builders</h2>
+          <p class="mt-2 text-slate-600">A small carousel to mimic “social proof” sections.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="btnPrev" class="h-10 w-10 rounded-xl bg-white/80 ring-1 ring-slate-200 hover:bg-white focus-ring" aria-label="Previous testimonial">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button id="btnNext" class="h-10 w-10 rounded-xl bg-white/80 ring-1 ring-slate-200 hover:bg-white focus-ring" aria-label="Next testimonial">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-8 rounded-3xl bg-white/70 ring-1 ring-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-10">
+          <div class="grid lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7">
+              <div class="flex items-center gap-2 text-amber-500" aria-label="Rating">
+                <span>★★★★★</span>
+                <span class="text-xs text-slate-500" id="tMeta">5.0 • verified</span>
+              </div>
+              <blockquote class="mt-3 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900" id="tQuote">...</blockquote>
+              <div class="mt-4 flex items-center gap-3">
+                <div class="h-10 w-10 rounded-2xl bg-gradient-to-br from-indigo-600 to-fuchsia-600"></div>
+                <div>
+                  <p class="text-sm font-semibold" id="tName">...</p>
+                  <p class="text-xs text-slate-500" id="tRole">...</p>
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-5">
+              <div class="rounded-2xl bg-slate-900 text-white p-6">
+                <p class="text-sm font-semibold">Results snapshot</p>
+                <div class="mt-4 grid grid-cols-3 gap-3">
+                  <div class="rounded-2xl bg-white/10 p-4">
+                    <p class="text-xs text-white/70">Leads</p>
+                    <p class="mt-1 text-lg font-semibold" id="tStat1">+0%</p>
+                  </div>
+                  <div class="rounded-2xl bg-white/10 p-4">
+                    <p class="text-xs text-white/70">Time</p>
+                    <p class="mt-1 text-lg font-semibold" id="tStat2">0h</p>
+                  </div>
+                  <div class="rounded-2xl bg-white/10 p-4">
+                    <p class="text-xs text-white/70">Sales</p>
+                    <p class="mt-1 text-lg font-semibold" id="tStat3">+$0</p>
+                  </div>
+                </div>
+                <p class="mt-4 text-xs text-white/70">Demo numbers for UI realism.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 flex items-center justify-between">
+            <div class="flex gap-2" id="tDots"></div>
+            <button id="btnPause" class="text-xs px-3 py-2 rounded-xl bg-white/80 ring-1 ring-slate-200 hover:bg-white focus-ring">Pause</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Pricing that scales with you</h2>
+          <p class="mt-2 text-slate-600 max-w-2xl">Toggle monthly/yearly to see discounts. (Demo pricing.)</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-sm text-slate-600">Monthly</span>
+          <button id="billingToggle" class="relative inline-flex h-10 w-20 items-center rounded-full bg-slate-900 focus-ring" role="switch" aria-checked="false" aria-label="Toggle billing">
+            <span id="billingKnob" class="inline-block h-8 w-8 transform rounded-full bg-white transition translate-x-1"></span>
+          </button>
+          <span class="text-sm text-slate-900 font-semibold">Yearly <span class="ml-1 text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200">Save 20%</span></span>
+        </div>
+      </div>
+
+      <div id="pricingGrid" class="mt-8 grid lg:grid-cols-3 gap-5"></div>
+
+      <div class="mt-6 rounded-2xl bg-white/70 ring-1 ring-slate-200 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <p class="font-semibold">Need enterprise features?</p>
+          <p class="text-sm text-slate-600">SAML, multi-site, advanced roles, custom SLAs.</p>
+        </div>
+        <button class="px-4 py-2 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-800 focus-ring" id="btnContactSales">Contact sales</button>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Frequently asked questions</h2>
+        <p class="mt-2 text-slate-600 max-w-2xl">Accordion interactions included.</p>
+      </div>
+      <div class="mt-8 grid lg:grid-cols-2 gap-4" id="faqGrid"></div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="rounded-3xl bg-slate-900 text-white overflow-hidden relative">
+        <div class="absolute inset-0 opacity-70" style="background: radial-gradient(800px 400px at 20% 20%, rgba(99,102,241,.55), transparent 60%), radial-gradient(700px 380px at 80% 40%, rgba(236,72,153,.45), transparent 60%), radial-gradient(700px 380px at 55% 90%, rgba(16,185,129,.35), transparent 60%);"></div>
+        <div class="relative p-8 sm:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          <div>
+            <h3 class="text-2xl font-semibold tracking-tight">Ready to launch your next site?</h3>
+            <p class="mt-2 text-white/80 max-w-2xl">This page is a clone-inspired UI demo. Customize, extend, and make it your own.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <button class="px-5 py-3 rounded-xl bg-white text-slate-900 text-sm font-semibold hover:bg-slate-100 focus-ring" id="ctaTemplate">Pick a template</button>
+            <button class="px-5 py-3 rounded-xl btn-primary text-white text-sm font-semibold shadow-soft focus-ring" id="ctaStart2">Start building</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white/40 backdrop-blur">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid md:grid-cols-12 gap-8">
+        <div class="md:col-span-5">
+          <div class="flex items-center gap-2 font-semibold">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl btn-primary text-white shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" class="h-5 w-5">
+                <path d="M6 17V7l6 10 6-10v10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Wixish</span>
+          </div>
+          <p class="mt-3 text-sm text-slate-600 max-w-md">A single-page clone-inspired UI demo built for prototyping. Not affiliated with Wix.</p>
+          <div class="mt-4 flex items-center gap-2 text-xs text-slate-500">
+            <span class="px-2 py-1 rounded-lg bg-white/70 ring-1 ring-slate-200">No backend</span>
+            <span class="px-2 py-1 rounded-lg bg-white/70 ring-1 ring-slate-200">No tracking</span>
+            <span class="px-2 py-1 rounded-lg bg-white/70 ring-1 ring-slate-200">Just UI</span>
+          </div>
+        </div>
+        <div class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6 text-sm">
+          <div>
+            <p class="font-semibold">Product</p>
+            <div class="mt-3 grid gap-2 text-slate-600">
+              <a href="#templates" class="hover:text-slate-900">Templates</a>
+              <a href="#features" class="hover:text-slate-900">Features</a>
+              <a href="#pricing" class="hover:text-slate-900">Pricing</a>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold">Resources</p>
+            <div class="mt-3 grid gap-2 text-slate-600">
+              <button class="text-left hover:text-slate-900" id="btnKeyboard">Keyboard shortcuts</button>
+              <button class="text-left hover:text-slate-900" id="btnChangelog">Changelog</button>
+              <button class="text-left hover:text-slate-900" id="btnAbout">About this clone</button>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold">Support</p>
+            <div class="mt-3 grid gap-2 text-slate-600">
+              <a href="#faq" class="hover:text-slate-900">Help center</a>
+              <button class="text-left hover:text-slate-900" id="btnReport">Report issue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-500">
+        <p>© <span id="year"></span> Wixish Demo. Built with Tailwind + Vanilla JS.</p>
+        <p>Accessibility: keyboard focus rings, ESC closes modals, reduced-motion friendly.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal: template preview / get started -->
+  <div id="modal" class="hidden fixed inset-0 z-50">
+    <div class="absolute inset-0 bg-slate-950/40" data-modal-close="true"></div>
+    <div class="absolute inset-x-0 top-10 sm:top-16 mx-auto w-[92%] max-w-4xl">
+      <div class="rounded-3xl bg-white shadow-2xl ring-1 ring-slate-200 overflow-hidden">
+        <div class="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between">
+          <div>
+            <p class="text-sm font-semibold" id="modalTitle">Preview</p>
+            <p class="text-xs text-slate-500" id="modalSub">Template details</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="modalPrimary" class="px-4 py-2 rounded-xl text-sm font-semibold text-white btn-primary focus-ring">Use this template</button>
+            <button class="h-10 w-10 rounded-xl hover:bg-slate-100 focus-ring" data-modal-close="true" aria-label="Close modal">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="p-4 sm:p-6">
+          <div class="grid lg:grid-cols-12 gap-6 items-start">
+            <div class="lg:col-span-7">
+              <div class="rounded-2xl overflow-hidden ring-1 ring-slate-200 bg-gradient-to-br from-slate-900 to-slate-700">
+                <div class="p-4 text-white">
+                  <p class="text-xs text-white/80">Live preview (mock)</p>
+                  <p class="mt-1 text-lg font-semibold" id="modalMockName">Template</p>
+                </div>
+                <div class="p-4 bg-white">
+                  <div class="rounded-2xl bg-slate-50 ring-1 ring-slate-200 p-4">
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-2">
+                        <span class="h-7 w-7 rounded-xl bg-indigo-600"></span>
+                        <div>
+                          <div class="h-2.5 w-24 rounded bg-slate-200"></div>
+                          <div class="mt-2 h-2.5 w-16 rounded bg-slate-200"></div>
+                        </div>
+                      </div>
+                      <div class="flex gap-2">
+                        <div class="h-8 w-16 rounded-xl bg-slate-200"></div>
+                        <div class="h-8 w-20 rounded-xl bg-indigo-600"></div>
+                      </div>
+                    </div>
+                    <div class="mt-4 rounded-2xl bg-gradient-to-br from-indigo-600 to-fuchsia-600 p-5 text-white">
+                      <div class="h-3 w-20 rounded bg-white/25"></div>
+                      <div class="mt-3 h-6 w-64 max-w-full rounded bg-white/25"></div>
+                      <div class="mt-2 h-3 w-52 max-w-full rounded bg-white/25"></div>
+                      <div class="mt-4 flex gap-2">
+                        <div class="h-9 w-28 rounded-xl bg-white"></div>
+                        <div class="h-9 w-24 rounded-xl bg-white/20"></div>
+                      </div>
+                    </div>
+                    <div class="mt-4 grid grid-cols-3 gap-3">
+                      <div class="h-20 rounded-2xl bg-slate-200"></div>
+                      <div class="h-20 rounded-2xl bg-slate-200"></div>
+                      <div class="h-20 rounded-2xl bg-slate-200"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-5">
+              <div class="rounded-2xl bg-slate-50 ring-1 ring-slate-200 p-5">
+                <p class="text-sm font-semibold">What you get</p>
+                <ul class="mt-3 grid gap-2 text-sm text-slate-700" id="modalBullets"></ul>
+                <div class="mt-4 grid gap-2">
+                  <label class="text-xs text-slate-500" for="siteName">Site name</label>
+                  <input id="siteName" class="px-3 py-2.5 rounded-xl bg-white ring-1 ring-slate-200 focus-ring" placeholder="e.g., Nova Studio" />
+                </div>
+                <div class="mt-4 flex items-center justify-between text-xs text-slate-500">
+                  <span>Press <span class="px-2 py-1 rounded-lg bg-white ring-1 ring-slate-200">Esc</span> to close</span>
+                  <span id="modalCategory" class="px-2 py-1 rounded-lg bg-white ring-1 ring-slate-200">category</span>
+                </div>
+              </div>
+              <div class="mt-4 rounded-2xl bg-white ring-1 ring-slate-200 p-5">
+                <p class="text-sm font-semibold">Next steps</p>
+                <p class="mt-1 text-sm text-slate-600">We’ll load this template into the mini builder and let you publish a preview.</p>
+                <div class="mt-3 grid gap-2">
+                  <button id="modalGoBuilder" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-800 focus-ring">Open builder</button>
+                  <button id="modalJustClose" class="px-4 py-2 rounded-xl bg-white ring-1 ring-slate-200 text-sm font-semibold hover:bg-slate-50 focus-ring">Keep browsing</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="pointer-events-none fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden">
+    <div class="pointer-events-auto rounded-2xl bg-slate-900 text-white px-4 py-3 shadow-2xl ring-1 ring-white/10">
+      <div class="flex items-start gap-3">
+        <div class="mt-0.5 h-2 w-2 rounded-full bg-emerald-400"></div>
+        <div>
+          <p class="text-sm font-semibold" id="toastTitle">Saved</p>
+          <p class="text-xs text-white/80" id="toastBody">Your changes were saved.</p>
+        </div>
+        <button id="toastClose" class="ml-4 text-white/70 hover:text-white text-sm" aria-label="Close">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command palette (mini) -->
+  <div id="cmdk" class="hidden fixed inset-0 z-50">
+    <div class="absolute inset-0 bg-slate-950/40" data-cmdk-close="true"></div>
+    <div class="absolute inset-x-0 top-24 mx-auto w-[92%] max-w-xl">
+      <div class="rounded-3xl bg-white shadow-2xl ring-1 ring-slate-200 overflow-hidden">
+        <div class="p-4 border-b border-slate-200">
+          <input id="cmdkInput" class="w-full px-3 py-2.5 rounded-xl bg-slate-50 ring-1 ring-slate-200 focus-ring" placeholder="Type a command… (try: templates, pricing, publish)" />
+          <p class="mt-2 text-xs text-slate-500">Keyboard: <span class="px-2 py-1 rounded-lg bg-slate-50 ring-1 ring-slate-200">Enter</span> to run, <span class="px-2 py-1 rounded-lg bg-slate-50 ring-1 ring-slate-200">Esc</span> to close.</p>
+        </div>
+        <div class="p-2" id="cmdkList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
