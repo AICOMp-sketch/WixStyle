@@ -1,0 +1,18 @@
+
+    :root{color-scheme: light;}
+    .glass{background: rgba(255,255,255,.72); backdrop-filter: blur(10px);}
+    .shadow-soft{box-shadow: 0 20px 60px rgba(2,6,23,.12)}
+    .ring-soft{box-shadow: 0 0 0 1px rgba(148,163,184,.35) inset}
+    .noise::before{content:"";position:absolute;inset:0;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" stitchTiles="stitch"/></filter><rect width="180" height="180" filter="url(%23n)" opacity=".18"/></svg>');opacity:.25;mix-blend-mode:overlay;pointer-events:none;}
+    .bg-grid{background-image: linear-gradient(to right, rgba(148,163,184,.16) 1px, transparent 1px), linear-gradient(to bottom, rgba(148,163,184,.16) 1px, transparent 1px); background-size: 32px 32px;}
+    .gradient-hero{background: radial-gradient(1200px 700px at 20% 15%, rgba(99,102,241,.26), transparent 55%), radial-gradient(1000px 650px at 85% 30%, rgba(16,185,129,.18), transparent 60%), radial-gradient(900px 650px at 55% 90%, rgba(236,72,153,.16), transparent 62%), linear-gradient(to bottom, #ffffff, #f8fafc);}
+    .btn-primary{background: linear-gradient(135deg, #4f46e5, #7c3aed);}
+    .btn-primary:hover{filter:saturate(1.1) brightness(.98)}
+    .focus-ring:focus{outline:none; box-shadow: 0 0 0 4px rgba(99,102,241,.25);}
+    /* Smooth-ish scroll without affecting reduced motion */
+    @media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth;} }
+    /* Subtle scrollbar */
+    ::-webkit-scrollbar{height: 10px; width: 10px}
+    ::-webkit-scrollbar-thumb{background: rgba(100,116,139,.35); border-radius: 999px}
+    ::-webkit-scrollbar-thumb:hover{background: rgba(100,116,139,.55)}
+ 
